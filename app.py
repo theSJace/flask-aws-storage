@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 UPLOAD_FOLDER = "uploads"
-BUCKET = "lats-image-data"
+BUCKET = "techusprint01"
 
 @app.route("/")
 def home():
@@ -22,7 +22,7 @@ def upload():
     if request.method == "POST":
         f = request.files['file']
         f.save(os.path.join(UPLOAD_FOLDER, secure_filename(f.filename)))
-        upload_file(f"uploads/{f.filename}", BUCKET)
+        upload_file(f"{f.filename}", BUCKET)
         return redirect("/")
 
 if __name__ == '__main__':
